@@ -34,16 +34,16 @@
 ## Выходные файлы
 
 my_root_ca.key	  --  Приватный ключ личного корня — хранить офлайн. </br>
-my_root_ca.crt	  --  Сертификат личного корня — установить как Trusted Root  <br>
-mincifry_cross.crt -	Кросс-сертифицированный корень Минцифры — установить как Intermediate (Windows) или User CA (Android)
+my_root_ca.crt	  --  Сертификат личного корня — установить как Trusted Root.  <br>
+mincifry_cross.crt -	Кросс-сертифицированный корень Минцифры — установить как Intermediate (Windows) или User CA (Android).
 
 
 ## Запуск скрипта
 
-Скачать сертификат root_ca (например Russian_Trusted_Root_CA.cer, опционально в папку со скриптом)
-По необходимости добавить домены в скрипт в DEFAULT_PERMITTED_DNS
-Запуск по батнику
-если имя сертификата изменилось или  иная директория
+Скачать сертификат root_ca (например Russian_Trusted_Root_CA.cer, опционально в папку со скриптом).
+По необходимости добавить домены в скрипт в DEFAULT_PERMITTED_DNS.
+Запуск по батнику.
+Если имя сертификата изменилось или иная директория:
 python cert_limitation.py --mincifry path_to_/Russian_Trusted_Root_CA.cer
 Команда использовать имеющиеся личные сертификаты:
 python cert_limitation.py --mincifry Russian_Trusted_Root_CA.cer --root-key ./my_root_ca.key --root-cert ./my_root_ca.crt
@@ -51,7 +51,7 @@ python cert_limitation.py --mincifry Russian_Trusted_Root_CA.cer --root-key ./my
 
 ## Установка сертификатов
 
-## Windows
+### Windows
 
 Удалить оригинальный корень Минцифры из Trusted Root Certification Authorities.
 Импортировать my_root_ca.crt → Trusted Root Certification Authorities.
@@ -78,10 +78,10 @@ my_root_ca.crt и mincifry_cross.crt.
 --root-key PATH / --root-cert PATH	Переиспользовать существующий личный корень (только вместе)
 --force	Перезаписать существующие my_root_ca.* — потребуется заменить его на устройстве
 
-## Послесловие
-Сделано в кооперации с LLM.
+### От автора
+Сделано в кооперации с LLM. </br>
 Подсвечивают риск, что Windows может молча скачать оригинальный корень обратно через AIA
-при первом подключении. 
+при первом подключении.  </br>
 Для строгой изоляции устанавливайте в отдельный
 профиль Firefox — у него собственное хранилище сертификатов, независимое
 от системного.
