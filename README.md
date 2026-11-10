@@ -1,5 +1,5 @@
-## Ограничивает сертификат минцифры по списку доменов. 
-Снижение риска MITM атаки при фальсификации ответа днс и подписи например google.com сертификатом минцифры.
+## Ограничивает сертификат Минцифры по списку доменов. 
+Снижение риска MITM атаки при фальсификации ответа днс и подписи например google.com сертификатом Минцифры.
 
 Кросс-сертификация корневого сертификата Минцифры с расширением
 **X.509 Name Constraints** — после установки он сможет подтверждать
@@ -34,7 +34,7 @@
 ##Выходные файлы
 my_root_ca.key	Приватный ключ личного корня — хранить офлайн
 my_root_ca.crt	Сертификат личного корня — установить как Trusted Root
-mincifry_cross.crt	Кросс-сертифицированный корень МинЦифры — установить как Intermediate (Windows) или User CA (Android)
+mincifry_cross.crt	Кросс-сертифицированный корень Минцифры — установить как Intermediate (Windows) или User CA (Android)
 
 
 ##Запуск скрипта
@@ -44,7 +44,7 @@ mincifry_cross.crt	Кросс-сертифицированный корень М
 Запуск по батнику
 если имя сертификата изменилось или  иная директория
 python cert_limitation.py --mincifry path_to_/Russian_Trusted_Root_CA.cer
-Команда переиспользовать имеющиеся личные сертификаты:
+Команда использовать имеющиеся личные сертификаты:
 python cert_limitation.py --mincifry Russian_Trusted_Root_CA.cer --root-key ./my_root_ca.key --root-cert ./my_root_ca.crt
 
 
@@ -56,7 +56,7 @@ python cert_limitation.py --mincifry Russian_Trusted_Root_CA.cer --root-key ./my
 Импортировать mincifry_cross.crt → Intermediate Certification Authorities.
 
 #Android / GrapheneOS
-Удалить оба оригинальных сертификата — и корневой минцифры, и
+Удалить оба оригинальных сертификата — и корневой Минцифры, и
 промежуточный Sub CA — из пользовательского хранилища (любой
 пользовательский CA становится trust anchor, что обойдёт ваши
 ограничения).
