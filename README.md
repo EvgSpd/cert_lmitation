@@ -26,14 +26,15 @@
 
 В хранилище устанавливаются **только** `my_root_ca.crt` (доверенный
 корень) и `mincifry_cross.crt` (промежуточный / пользовательский CA).
-Оригинальный корень МинЦифры обязательно удаляется, иначе построитель
+Оригинальный root_ca обязательно удаляется, иначе построитель
 цепочек предпочтёт его, и ограничения будут обойдены. 
 
 
 
 ##Выходные файлы
-my_root_ca.key	Приватный ключ личного корня — хранить офлайн
-my_root_ca.crt	Сертификат личного корня — установить как Trusted Root
+
+my_root_ca.key	Приватный ключ личного корня — хранить офлайн. </br>
+my_root_ca.crt	Сертификат личного корня — установить как Trusted Root  <br>
 mincifry_cross.crt	Кросс-сертифицированный корень Минцифры — установить как Intermediate (Windows) или User CA (Android)
 
 
@@ -51,11 +52,12 @@ python cert_limitation.py --mincifry Russian_Trusted_Root_CA.cer --root-key ./my
 ##Установка сертификатов
 
 ##Windows
+
 Удалить оригинальный корень Минцифры из Trusted Root Certification Authorities.
 Импортировать my_root_ca.crt → Trusted Root Certification Authorities.
 Импортировать mincifry_cross.crt → Intermediate Certification Authorities.
 
-#Android / GrapheneOS
+#Android / GrapheneOS </br>
 Удалить оба оригинальных сертификата — и корневой Минцифры, и
 промежуточный Sub CA — из пользовательского хранилища (любой
 пользовательский CA становится trust anchor, что обойдёт ваши
