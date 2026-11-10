@@ -31,14 +31,14 @@
 
 
 
-##Выходные файлы
+## Выходные файлы
 
-my_root_ca.key	Приватный ключ личного корня — хранить офлайн. </br>
-my_root_ca.crt	Сертификат личного корня — установить как Trusted Root  <br>
-mincifry_cross.crt	Кросс-сертифицированный корень Минцифры — установить как Intermediate (Windows) или User CA (Android)
+my_root_ca.key	  --  Приватный ключ личного корня — хранить офлайн. </br>
+my_root_ca.crt	  --  Сертификат личного корня — установить как Trusted Root  <br>
+mincifry_cross.crt -	Кросс-сертифицированный корень Минцифры — установить как Intermediate (Windows) или User CA (Android)
 
 
-##Запуск скрипта
+## Запуск скрипта
 
 Скачать сертификат root_ca (например Russian_Trusted_Root_CA.cer, опционально в папку со скриптом)
 По необходимости добавить домены в скрипт в DEFAULT_PERMITTED_DNS
@@ -49,15 +49,15 @@ python cert_limitation.py --mincifry path_to_/Russian_Trusted_Root_CA.cer
 python cert_limitation.py --mincifry Russian_Trusted_Root_CA.cer --root-key ./my_root_ca.key --root-cert ./my_root_ca.crt
 
 
-##Установка сертификатов
+## Установка сертификатов
 
-##Windows
+## Windows
 
 Удалить оригинальный корень Минцифры из Trusted Root Certification Authorities.
 Импортировать my_root_ca.crt → Trusted Root Certification Authorities.
 Импортировать mincifry_cross.crt → Intermediate Certification Authorities.
 
-#Android / GrapheneOS </br>
+### Android / GrapheneOS </br>
 Удалить оба оригинальных сертификата — и корневой Минцифры, и
 промежуточный Sub CA — из пользовательского хранилища (любой
 пользовательский CA становится trust anchor, что обойдёт ваши
@@ -69,7 +69,7 @@ my_root_ca.crt и mincifry_cross.crt.
 (7 раз нажать на логотип Firefox в разделе «О Firefox», затем
 включить опцию в «Секретных настройках»).
 
-##Параметры
+## Параметры
 
 Флаг	Описание
 --mincifry PATH	Оригинальный корень Минцифры (PEM или DER). По умолчанию: Russian_Trusted_Root_CA.cer
@@ -78,7 +78,7 @@ my_root_ca.crt и mincifry_cross.crt.
 --root-key PATH / --root-cert PATH	Переиспользовать существующий личный корень (только вместе)
 --force	Перезаписать существующие my_root_ca.* — потребуется заменить его на устройстве
 
-##Послесловие
+## Послесловие
 Сделано в кооперации с LLM.
 Подсвечивают риск, что Windows может молча скачать оригинальный корень обратно через AIA
 при первом подключении. 
