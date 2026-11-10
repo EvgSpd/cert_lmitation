@@ -29,7 +29,7 @@
 Оригинальный корень Минцифры обязательно удаляется, иначе построитель
 цепочек предпочтёт его, и ограничения будут обойдены. 
 
-Параметры
+##Параметры
 Флаг	Описание
 --mincifry PATH	Оригинальный корень Минцифры (PEM или DER). По умолчанию: Russian_Trusted_Root_CA.cer
 --outdir DIR	Куда сохранять результаты. По умолчанию: .
@@ -37,40 +37,40 @@
 --root-key PATH / --root-cert PATH	Переиспользовать существующий личный корень (только вместе)
 --force	Перезаписать существующие my_root_ca.* — потребуется заменить его на устройстве
 
-Выходные файлы
+##Выходные файлы
 my_root_ca.key	Приватный ключ личного корня — хранить офлайн
 my_root_ca.crt	Сертификат личного корня — установить как Trusted Root
 mincifry_cross.crt	Кросс-сертифицированный корень Минцифры — установить как Intermediate (Windows) или User CA (Android)
 
 
-запуск по батнику, исполняет команду
-python cert_limitation.py --mincifry Russian_Trusted_Root_CA.cer
-можно без параметра, значение по умолчанию Russian_Trusted_Root_CA.cer
-Команда периспользует имеющиеся личные серификаты
+##запуск 
+Скачать сертификат root_ca (например Russian_Trusted_Root_CA.cer, опционально в папку со сткриптом)
+По необходимости добавить домены в скрипт в DEFAULT_PERMITTED_DNS
+Запуск по батнику
+если имя сертификата изменилось или  иная дирректория
+python cert_limitation.py --mincifry path_to_/Russian_Trusted_Root_CA.cer
+Команда переиспользует имеющиеся личные сертификаты:
 python cert_limitation.py --mincifry Russian_Trusted_Root_CA.cer --root-key ./my_root_ca.key --root-cert ./my_root_ca.crt
 
 
-Установка
-Windows
+##Установка сертификатов
+#Windows
 Удалить оригинальный корень Минцифры из Trusted Root Certification Authorities.
-
 Импортировать my_root_ca.crt → Trusted Root Certification Authorities.
-
 Импортировать mincifry_cross.crt → Intermediate Certification Authorities.
 
-
-Android / GrapheneOS
+#Android / GrapheneOS
 Удалить оба оригинальных сертификата — и корневой минцифры, и
 промежуточный Sub CA — из пользовательского хранилища (любой
 пользовательский CA становится trust anchor, что обойдёт ваши
 ограничения).
-
 Настройки → Безопасность → Шифрование и учётные данные → Установить сертификат → Сертификат ЦС → установить оба файла:
 my_root_ca.crt и mincifry_cross.crt.
 
 В Firefox для Android включить Use third party CA certificates
 (7 раз нажать на логотип Firefox в разделе «О Firefox», затем
 включить опцию в «Секретных настройках»).
+
 
 Сделано в кооперации с LLM.
 Подсвечивают риск, что Windows может молча скачать оригинальный корень обратно через AIA
