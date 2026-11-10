@@ -43,6 +43,7 @@ mincifry_cross.crt -	Кросс-сертифицированный корень 
 1. Скачать сертификат root_ca (например Russian_Trusted_Root_CA.cer, опционально в папку со скриптом). </br>
 2. Опционально добавить домены в скрипте в DEFAULT_PERMITTED_DNS. </br>
 3. Запуск по батнику. </br>
+
 Если имя сертификата изменилось или иная директория: </br>
 python cert_limitation.py --mincifry path_to_/Russian_Trusted_Root_CA.cer </br>
 Команда использовать имеющиеся личные сертификаты: </br>
