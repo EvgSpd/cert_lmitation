@@ -9,6 +9,7 @@
 
 - Python ≥ 3.7
 - `cryptography` ≥ 2.0 
+
 (протестировано на python 3.8 с cryptography 2.8.1;
  для старых версий в скрипт встроены fallback-обёртки для `backend`)
 
