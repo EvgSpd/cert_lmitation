@@ -3,7 +3,7 @@
 
 Кросс-сертификация корневого сертификата Минцифры с расширением
 **X.509 Name Constraints** — после установки он сможет подтверждать
-подлинность только для заданного списка доменов. Удалить и sub_ca.crt
+подлинность только для заданного списка доменов.
 
 ## Требования
 
@@ -16,7 +16,7 @@
 ## Как это работает
 
 1. Генерируется ваш личный корневой CA (`my_root_ca.key` / `my_root_ca.crt`).
-2. Оригинальный корень Минцифры **переподписывается** вашим личным CA
+2. Оригинальный корень Минцифры переподписывается вашим личным CA
    с сохранением публичного ключа и subject, но с добавлением критичного
    расширения `Name Constraints`, в котором перечислены только нужные
    вам домены.
@@ -35,27 +35,27 @@
 
 my_root_ca.key	  --  Приватный ключ личного корня — хранить офлайн. </br>
 my_root_ca.crt	  --  Сертификат личного корня — установить как Trusted Root.  <br>
-mincifry_cross.crt -	Кросс-сертифицированный корень Минцифры — установить как Intermediate (Windows) или User CA (Android).
+mincifry_cross.crt -	Кросс-сертифицированный корень Минцифры — установить как Intermediate (Windows) или User CA (Android). </br>
 
 
 ## Запуск скрипта
 
-Скачать сертификат root_ca (например Russian_Trusted_Root_CA.cer, опционально в папку со скриптом).
-По необходимости добавить домены в скрипт в DEFAULT_PERMITTED_DNS.
-Запуск по батнику.
-Если имя сертификата изменилось или иная директория:
-python cert_limitation.py --mincifry path_to_/Russian_Trusted_Root_CA.cer
-Команда использовать имеющиеся личные сертификаты:
-python cert_limitation.py --mincifry Russian_Trusted_Root_CA.cer --root-key ./my_root_ca.key --root-cert ./my_root_ca.crt
+Скачать сертификат root_ca (например Russian_Trusted_Root_CA.cer, опционально в папку со скриптом). </br>
+По необходимости добавить домены в скрипт в DEFAULT_PERMITTED_DNS. </br>
+Запуск по батнику. </br>
+Если имя сертификата изменилось или иная директория: </br>
+python cert_limitation.py --mincifry path_to_/Russian_Trusted_Root_CA.cer </br>
+Команда использовать имеющиеся личные сертификаты: </br>
+python cert_limitation.py --mincifry Russian_Trusted_Root_CA.cer --root-key ./my_root_ca.key --root-cert ./my_root_ca.crt </br>
 
 
 ## Установка сертификатов
 
 ### Windows
 
-Удалить оригинальный корень Минцифры из Trusted Root Certification Authorities.
-Импортировать my_root_ca.crt → Trusted Root Certification Authorities.
-Импортировать mincifry_cross.crt → Intermediate Certification Authorities.
+Удалить оригинальный корень Минцифры из Trusted Root Certification Authorities. </br>
+Импортировать my_root_ca.crt → Trusted Root Certification Authorities. </br>
+Импортировать mincifry_cross.crt → Intermediate Certification Authorities. </br>
 
 ### Android / GrapheneOS </br>
 Удалить оба оригинальных сертификата — и корневой Минцифры, и
@@ -72,11 +72,11 @@ my_root_ca.crt и mincifry_cross.crt.
 ## Параметры
 
 Флаг	Описание
---mincifry PATH	Оригинальный корень Минцифры (PEM или DER). По умолчанию: Russian_Trusted_Root_CA.cer
---outdir DIR	Куда сохранять результаты. По умолчанию: .
---permit DNS	Разрешённое DNS-имя, можно указывать несколько раз. Переопределяет встроенный список
---root-key PATH / --root-cert PATH	Переиспользовать существующий личный корень (только вместе)
---force	Перезаписать существующие my_root_ca.* — потребуется заменить его на устройстве
+--mincifry PATH	Оригинальный корень Минцифры (PEM или DER). По умолчанию: Russian_Trusted_Root_CA.cer </br>
+--outdir DIR	Куда сохранять результаты. По умолчанию: . </br>
+--permit DNS	Разрешённое DNS-имя, можно указывать несколько раз. Переопределяет встроенный список </br>
+--root-key PATH / --root-cert PATH	Переиспользовать существующий личный корень (только вместе) </br>
+--force	Перезаписать существующие my_root_ca.* — потребуется заменить его на устройстве </br>
 
 ### От автора
 Сделано в кооперации с LLM. </br>
